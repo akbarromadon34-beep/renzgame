@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RENZGAME PS2 Catalog</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+ 
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --text-primary: #e0e0ff;
+      --accent-primary: #00ffaa;
+      --accent-secondary: #ff00aa;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Typography System */
+    h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.5px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+
+    p, span, label, button { font-size: 1rem; }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+
+    /* Pixel Game Font - Judul Header */
+    .pixel-title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(1rem, 2vw, 1.8rem);
+      letter-spacing: 0.15em;
+      line-height: 1.3;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #00ffaa, #ff00aa, #00ffaa);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: pixelGlowBreathe 3s ease-in-out infinite, pixelShimmer 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(0,255,170,0.4)) drop-shadow(0 0 16px rgba(255,0,170,0.2));
+      will-change: filter, text-shadow;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .pixel-title:hover {
+      filter: drop-shadow(0 0 12px rgba(0,255,170,0.8)) drop-shadow(0 0 24px rgba(255,0,170,0.4));
+    }
+
+    @keyframes pixelGlowBreathe {
+      0%, 100% {
+        text-shadow:
+          0 0 8px rgba(0,255,170,0.5),
+          0 0 16px rgba(0,255,170,0.3);
+      }
+      50% {
+        text-shadow:
+          0 0 12px rgba(0,255,170,0.8),
+          0 0 24px rgba(0,255,170,0.5),
+          0 0 32px rgba(255,0,170,0.3);
+      }
+    }
+
+    @keyframes pixelShimmer {
+      0%, 100% { background-position: 200% auto; }
+      50% { background-position: -200% auto; }
+    }
+
+    .neon-glow {
+      text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary), 0 0 40px var(--accent-primary);
+    }
+
+    .neon-border {
+      box-shadow: 0 0 5px var(--accent-primary), 0 0 10px var(--accent-primary), inset 0 0 5px rgba(0,255,170,0.1);
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,255,170,0.3), 0 0 20px rgba(255,0,170,0.2);
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+    }
+
+    .glass-card {
+      background: rgba(18, 18, 26, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,255,170,0.2);
+    }
+
+    .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 3px; }
+
+    .search-glow:focus {
+      box-shadow: 0 0 0 2px var(--accent-primary), 0 0 20px rgba(0,255,170,0.3) !important;
+    }
+
+    .pulse-animation { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+    .slide-up { animation: slideUp 0.3s ease-out; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .fade-in { animation: fadeIn 0.3s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .order-badge {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      animation: badgePulse 1.5s infinite;
+    }
+    @keyframes badgePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+    .promo-banner {
+      background: linear-gradient(90deg, rgba(255,0,170,0.2), rgba(0,255,170,0.2), rgba(255,0,170,0.2));
+      background-size: 200% 100%;
+      animation: promoShine 3s linear infinite;
+      box-shadow: 0 0 20px rgba(255, 0, 170, 0.4);
+    }
+    @keyframes promoShine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    .loading-spinner {
+      border: 3px solid rgba(0,255,170,0.1);
+      border-top: 3px solid var(--accent-primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    input[type="text"], input[type="search"], input[type="password"], textarea {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .drag-over {
+      background: rgba(0,255,170,0.2) !important;
+      border-color: var(--accent-primary) !important;
+    }
+
+    .instruction-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: rgba(0,255,170,0.1);
+      border: 1px solid rgba(0,255,170,0.3);
+    }
+
+    .instruction-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00ffaa, #ff00aa);
+      color: #000;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .game-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .game-card.selected {
+      transform: scale(1.04);
+      box-shadow: 0 0 0 3px var(--accent-primary),
+                  0 0 15px rgba(0,255,170,0.6),
+                  0 10px 30px rgba(0,255,170,0.3) !important;
+    }
+
+    .game-card .selected-badge {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,255,170,0.5);
+    }
+
+    .game-card.selected .selected-badge {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .promo-sticky {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      z-index: 39;
+      padding: 0.75rem;
+      background: linear-gradient(90deg, rgba(0,0,0,0.8), rgba(255,0,170,0.2), rgba(0,0,0,0.8));
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255,0,170,0.4);
+    }
+
+    /* Import Status Badges */
+    .import-item {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin: 0.5rem 0;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .import-item.success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+    .import-item.failed {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+    .import-item.retry {
+      background: rgba(251, 146, 60, 0.15);
+      border: 1px solid rgba(251, 146, 60, 0.3);
+      color: #fed7aa;
+    }
+    .import-status-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      flex-shrink: 0;
+    }
+    .retry-btn-small {
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      background: rgba(99, 102, 241, 0.3);
+      border: 1px solid rgba(99, 102, 241, 0.5);
+      color: #a5b4fc;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .retry-btn-small:hover {
+      background: rgba(99, 102, 241, 0.6);
+      border-color: rgba(99, 102, 241, 0.8);
+    }
+  </style>
+</head>
+
+<body class="h-full overflow-auto gradient-bg">
+  <div id="app" class="min-h-full flex flex-col">
+
+    <!-- Login Modal (Admin) -->
+    <div id="login-modal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center">
+      <div class="glass-card rounded-2xl p-6 md:p-8 w-full max-w-sm mx-4 slide-up">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 mx-auto rounded-lg bg-gradient-to-br from-cyan-400 to-pink-500 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-cyan-400">Admin Login</h2>
+        </div>
+
+        <div class="space-y-4">
+          <input type="password" id="admin-password-input" placeholder="Masukkan password admin"
+                 class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-cyan-500/30 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all text-base">
+          <button id="login-btn"
+                  class="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-cyan-600 to-pink-600 hover:from-cyan-500 hover:to-pink-500 text-white font-bold transition-all">
+            Login
+          </button>
+          <button id="login-cancel"
+                  class="w-full px-4 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-gray-300 font-medium transition-all">
+            Cancel
+          </button>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 glass-card border-b border-cyan-500/20">
+      <div class="max-w-7xl mx-auto px-4 py-3 md:py-4">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-br from-cyan-400 to-pink-500 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+              </svg>
+            </div>
+            <h1 id="site-title" class="pixel-title">RENZGAME PS2</h1>
+          </div>
+
+          <div class="flex items-center gap-2 md:gap-3 flex-shrink-0">
+            <button id="admin-toggle"
+                    class="px-3 py-2 md:px-4 md:py-2 rounded-lg bg-purple-600/30 hover:bg-purple-600/50 border border-purple-500/50 text-purple-300 text-sm font-medium transition-all flex items-center gap-2 whitespace-nowrap">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <span class="hidden sm:inline">Admin</span>
+            </button>
+
+            <button id="order-toggle"
+                    class="relative px-3 py-2 md:px-4 md:py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-pink-600 hover:from-cyan-500 hover:to-pink-500 text-white text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+              <span class="hidden sm:inline">ORDER</span>
+              <span id="order-count"
+                    class="absolute -top-2 -right-2 w-5 h-5 order-badge rounded-full text-xs font-bold flex items-center justify-center text-white hidden">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Promo Banner Sticky -->
+    <div id="promo-sticky" class="promo-sticky flex items-center justify-center">
+      <div class="flex items-center justify-center gap-3">
+        <span class="text-lg md:text-xl">🎁</span>
+        <p id="promo-sticky-text" class="font-bold text-sm md:text-base text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-pink-300">
+          🔥 PROMO: Beli 10 Game GRATIS 1 Game!
+        </p>
+        <span class="text-lg md:text-xl">🔥</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-6 mt-12">
+
+      <!-- Order Instructions -->
+      <div class="mb-8 p-4 md:p-6 rounded-xl bg-gray-900/60 border border-cyan-500/30">
+        <h2 class="text-xl md:text-2xl font-bold text-cyan-400 mb-4">📋 Petunjuk Order</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="instruction-card">
+            <div class="instruction-number">1</div>
+            <div><p id="instruction-1" class="text-sm md:text-base text-gray-300">Pilih game favorit Anda atau cari di kotak pencarian</p></div>
+          </div>
+          <div class="instruction-card">
+            <div class="instruction-number">2</div>
+            <div><p id="instruction-2" class="text-sm md:text-base text-gray-300">Buka bar ORDER jika sudah selesai memilih</p></div>
+          </div>
+          <div class="instruction-card">
+            <div class="instruction-number">3</div>
+            <div><p id="instruction-3" class="text-sm md:text-base text-gray-300">Masukkan Nama Lengkap Anda untuk konfirmasi pesanan</p></div>
+          </div>
+          <div class="instruction-card">
+            <div class="instruction-number">4</div>
+            <div><p id="instruction-4" class="text-sm md:text-base text-gray-300">Kirim daftar tersebut langsung ke WhatsApp Admin</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Section -->
+      <div class="mb-8">
+        <h2 class="text-xl md:text-2xl font-bold text-cyan-400 mb-4">🔍 Cari Game</h2>
+        <div class="relative">
+          <input type="search" id="unified-search" placeholder="Ketik judul game (katalog + RAWG)..."
+                 class="w-full px-4 py-3 md:py-4 pl-12 rounded-xl bg-gray-900/80 border border-cyan-500/30 text-white placeholder-gray-500 text-base md:text-lg focus:outline-none search-glow transition-all">
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <div id="search-loading" class="absolute right-4 top-1/2 -translate-y-1/2 hidden">
+            <div class="loading-spinner w-6 h-6"></div>
+          </div>
+        </div>
+
+        <!-- Search Results -->
+        <div id="search-results" class="mt-6 hidden">
+          <div id="catalog-results-section" class="mb-8 hidden">
+            <h3 class="text-lg font-semibold text-cyan-400 mb-3">📀 Dari Katalog Lokal</h3>
+            <div id="catalog-results-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"></div>
+          </div>
+
+          <div id="rawg-results-section" class="mb-8 hidden">
+            <h3 class="text-lg font-semibold text-pink-400 mb-3">🌐 Dari RAWG Database</h3>
+            <div id="rawg-results-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"></div>
+          </div>
+
+          <div id="no-results" class="hidden text-center py-12">
+            <p class="text-xl text-gray-400 mb-2">Tidak ada hasil pencarian</p>
+            <p class="text-sm text-gray-500">Coba kata kunci lain</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Stats -->
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl md:text-2xl font-bold text-cyan-400">📀 Katalog Lengkap</h2>
+        <span id="catalog-count" class="text-sm md:text-base text-gray-400">0 games</span>
+      </div>
+
+      <!-- Catalog Grid -->
+      <div id="catalog-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"></div>
+
+      <!-- Empty State -->
+      <div id="empty-catalog" class="hidden text-center py-16">
+        <div class="text-6xl mb-4">🎮</div>
+        <h3 class="text-xl md:text-2xl font-bold text-gray-400 mb-2">Katalog Kosong</h3>
+        <p class="text-gray-500">Klik tombol Admin untuk menambah game</p>
+      </div>
+
+      <!-- Loading State -->
+      <div id="catalog-loading" class="hidden text-center py-16">
+        <div class="loading-spinner mx-auto mb-4"></div>
+        <p class="text-gray-400">Memuat katalog...</p>
+      </div>
+    </main>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="admin-overlay"></div>
+      <div class="absolute right-0 top-0 h-full w-full max-w-lg glass-card border-l border-cyan-500/30 overflow-y-auto scrollbar-thin slide-up">
+        <div class="p-4 md:p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl md:text-2xl font-bold text-purple-400">⚙️ Admin Panel</h2>
+            <button id="admin-close" class="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Add Single Game -->
+          <div class="mb-6 p-4 rounded-xl bg-gray-900/50 border border-purple-500/30">
+            <h3 class="font-semibold text-purple-300 mb-3 text-base">➕ Tambah Game dari RAWG</h3>
+            <div class="relative">
+              <input type="text" id="admin-game-input" placeholder="Cari game..."
+                     class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-purple-500/30 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-all text-base">
+              <div id="admin-search-loading" class="absolute right-3 top-1/2 -translate-y-1/2 hidden">
+                <div class="loading-spinner w-5 h-5"></div>
+              </div>
+            </div>
+            <div id="admin-search-results" class="mt-3 max-h-60 overflow-y-auto scrollbar-thin hidden"></div>
+          </div>
+
+          <!-- Bulk Import -->
+          <div class="mb-6 p-4 rounded-xl bg-gray-900/50 border border-purple-500/30">
+            <h3 class="font-semibold text-purple-300 mb-3 text-base">📄 Import Massal dari File .TXT</h3>
+            <p class="text-sm text-gray-400 mb-4">Satu judul game per baris</p>
+
+            <div id="drag-drop-area"
+                 class="mb-4 p-6 border-2 border-dashed border-purple-500/50 rounded-lg text-center cursor-pointer hover:border-purple-500 transition-all bg-purple-500/5">
+              <svg class="w-8 h-8 mx-auto text-purple-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3v-6"/>
+              </svg>
+              <p class="text-white font-medium text-base">Drag file .txt di sini</p>
+              <p class="text-gray-400 text-sm mt-1">atau klik untuk browse</p>
+              <input type="file" id="file-input" accept=".txt" class="hidden">
+            </div>
+
+            <textarea id="bulk-import-text"
+                      placeholder="God of War&#10;Final Fantasy X&#10;Metal Gear Solid 3&#10;..."
+                      class="w-full h-32 px-4 py-3 rounded-lg bg-gray-800 border border-purple-500/30 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-all resize-none text-base"></textarea>
+
+            <button id="bulk-import-btn"
+                    class="mt-3 w-full px-4 py-3 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold transition-all flex items-center justify-center gap-2 text-base">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+              </svg>
+              Import Games
+            </button>
+
+            <div id="import-progress" class="mt-4 hidden">
+              <div class="flex items-center justify-between text-sm text-gray-400 mb-2">
+                <span class="font-medium">Import Progress:</span>
+                <span id="import-progress-text">0/0</span>
+              </div>
+              <div class="h-3 bg-gray-700 rounded-full overflow-hidden mb-3">
+                <div id="import-progress-bar" class="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all" style="width: 0%"></div>
+              </div>
+
+              <div id="import-summary" class="hidden mb-4 p-3 rounded-lg bg-gray-800 text-sm">
+                <div class="flex gap-4">
+                  <div>
+                    <p class="text-gray-400">Total Dibaca</p>
+                    <p id="summary-total" class="text-xl font-bold text-white">0</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400">Berhasil</p>
+                    <p id="summary-success" class="text-xl font-bold text-green-400">0</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400">Gagal</p>
+                    <p id="summary-failed" class="text-xl font-bold text-red-400">0</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400">Pending Retry</p>
+                    <p id="summary-pending" class="text-xl font-bold text-yellow-400">0</p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="import-results"
+                   class="text-sm text-gray-300 p-3 rounded-lg bg-gray-800 max-h-64 overflow-y-auto scrollbar-thin hidden"></div>
+
+              <div id="import-actions" class="hidden mt-3 flex gap-2">
+                <button id="retry-failed-btn"
+                        class="flex-1 px-3 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold transition-all flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                  </svg>
+                  Retry Gagal
+                </button>
+                <button id="export-failed-btn"
+                        class="flex-1 px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-all flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                  Export Gagal
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manage Catalog -->
+          <div class="p-4 rounded-xl bg-gray-900/50 border border-purple-500/30">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-semibold text-purple-300 text-base">🗂️ Kelola Katalog</h3>
+              <span id="admin-catalog-count" class="text-sm text-gray-400">0 games</span>
+            </div>
+            <div id="admin-catalog-list" class="max-h-80 overflow-y-auto scrollbar-thin space-y-2"></div>
+            <div id="admin-empty" class="hidden text-center py-8 text-gray-500 text-sm">
+              <p>Belum ada game di katalog</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Panel -->
+    <div id="order-panel" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="order-overlay"></div>
+      <div class="absolute right-0 top-0 h-full w-full max-w-lg glass-card border-l border-cyan-500/30 overflow-y-auto scrollbar-thin slide-up">
+        <div class="p-4 md:p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl md:text-2xl font-bold text-cyan-400">🛒 Order List</h2>
+            <button id="order-close" class="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white transition-all">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <div id="order-items" class="mb-6 space-y-3"></div>
+
+          <div id="empty-order" class="hidden text-center py-8">
+            <div class="text-5xl mb-4">🎮</div>
+            <p class="text-gray-400 text-base">Belum ada game dipilih</p>
+            <p class="text-sm text-gray-500 mt-2">Klik tombol + pada game untuk menambahkan</p>
+          </div>
+
+          <div id="order-summary" class="hidden mb-6 p-4 rounded-xl bg-gradient-to-br from-cyan-900/50 to-pink-900/50 border border-cyan-500/30">
+            <h3 class="font-semibold text-cyan-300 mb-4 text-base">📊 Ringkasan Order</h3>
+
+            <div class="space-y-2 text-sm md:text-base">
+              <div class="flex justify-between">
+                <span class="text-gray-400">Total Game:</span>
+                <span id="summary-total-order" class="text-white font-semibold">0</span>
+              </div>
+              <div class="flex justify-between text-pink-400">
+                <span>🎁 Bonus Gratis:</span>
+                <span id="summary-bonus" class="font-semibold">0</span>
+              </div>
+              <div class="h-px bg-gray-700 my-2"></div>
+              <div class="flex justify-between">
+                <span class="text-cyan-400 font-semibold">Total Dapat:</span>
+                <span id="summary-final" class="text-cyan-400 font-bold">0 Game</span>
+              </div>
+            </div>
+
+            <div class="mt-4 p-3 rounded-lg bg-pink-500/20 border border-pink-500/30">
+              <p class="text-sm text-pink-300 text-center">🎁 Setiap 10 game = GRATIS 1 game!</p>
+            </div>
+          </div>
+
+          <div id="customer-section" class="hidden mb-6 p-4 rounded-xl bg-gray-900/50 border border-cyan-500/30">
+            <h3 class="font-semibold text-cyan-300 mb-3 text-base">👤 Data Pelanggan</h3>
+            <input type="text" id="customer-name" placeholder="Nama Lengkap"
+                   class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-cyan-500/30 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all text-base">
+          </div>
+
+          <button id="send-whatsapp"
+                  class="hidden w-full px-6 py-4 rounded-xl bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white font-bold text-lg transition-all flex items-center justify-center gap-3">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Kirim ke WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Detail Modal -->
+    <div id="game-modal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" id="modal-overlay"></div>
+      <div class="absolute inset-4 md:inset-8 lg:inset-16 glass-card rounded-2xl overflow-hidden flex flex-col fade-in">
+        <div class="flex-1 overflow-y-auto scrollbar-thin">
+          <div class="relative">
+            <div id="modal-hero" class="h-48 md:h-64 lg:h-80 bg-cover bg-center relative">
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+              <button id="modal-close" class="absolute top-4 right-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="p-4 md:p-6 lg:p-8 -mt-16 relative">
+              <h2 id="modal-title" class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2"></h2>
+              <div id="modal-meta" class="flex flex-wrap gap-2 mb-4"></div>
+              <p id="modal-description" class="text-gray-300 text-sm md:text-base leading-relaxed mb-6"></p>
+
+              <div id="modal-screenshots-section" class="mb-6 hidden">
+                <h3 class="font-semibold text-cyan-400 mb-3 text-base">📸 Screenshots</h3>
+                <div id="modal-screenshots" class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3"></div>
+              </div>
+
+              <div id="modal-video-section" class="mb-6 hidden">
+                <h3 class="font-semibold text-cyan-400 mb-3 text-base">🎬 Gameplay Video</h3>
+                <div id="modal-video" class="aspect-video rounded-xl overflow-hidden bg-gray-800"></div>
+              </div>
+
+              <button id="modal-add-order"
+                      class="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-pink-600 hover:from-cyan-500 hover:to-pink-500 text-white font-bold text-base md:text-lg transition-all flex items-center justify-center gap-3">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                Tambah ke Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screenshot Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center">
+      <button id="lightbox-close" class="absolute top-4 right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all z-10">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <img id="lightbox-image" src="" alt="Screenshot" class="max-w-full max-h-full object-contain">
+      <div id="lightbox-counter" class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 text-white text-sm"></div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+         class="fixed bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-pink-600 text-white font-semibold shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-[70] text-base">
+      <span id="toast-message"></span>
+    </div>
+  </div>
+
+  <script>
+
+/* =========================================================
+   FALLBACK dataSdk (COMPATIBLE DENGAN SCRIPT KAMU)
+   - Support: init(handler), getAll(), create(), delete()
+   - Persist: LocalStorage
+   - Auto trigger: handler.onDataChanged(data)
+   ========================================================= */
+
+(function () {
+  // Kalau dataSdk asli sudah ada, jangan override
+  if (window.dataSdk && typeof window.dataSdk.init === "function") {
+    console.log("✅ dataSdk asli tersedia");
+    return;
+  }
+
+  console.warn("⚠️ dataSdk tidak tersedia / tidak lengkap → pakai LocalStorage fallback");
+
+  const STORAGE_KEY = "RENZGAME_PS2_CATALOG";
+  let _handler = null;
+
+  function safeParse(json, fallback) {
+    try { return JSON.parse(json); } catch { return fallback; }
+  }
+
+  function load() {
+    return safeParse(localStorage.getItem(STORAGE_KEY), []) || [];
+  }
+
+  function save(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function notify() {
+    if (_handler && typeof _handler.onDataChanged === "function") {
+      _handler.onDataChanged(load());
+    }
+  }
+
+  function makeBackendId(item) {
+    // Supaya removeGameFromCatalog(game.__backendId) tetap jalan
+    if (item.__backendId) return item.__backendId;
+    if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
+    return "id_" + Math.random().toString(16).slice(2) + Date.now().toString(16);
+  }
+
+  window.dataSdk = {
+    async init(handler) {
+      _handler = handler || null;
+      // kirim data awal ke UI
+      notify();
+      return { isOk: true };
+    },
+
+    async getAll() {
+      return { isOk: true, data: load() };
+    },
+
+    async create(item) {
+      const data = load();
+
+      // Normalisasi wajib biar konsisten
+      const newItem = { ...item };
+      newItem.__backendId = makeBackendId(newItem);
+
+      // Hindari duplikat berdasarkan id/slug
+      const exists = data.some(g =>
+        (g.id && newItem.id && g.id === newItem.id) ||
+        (g.slug && newItem.slug && g.slug === newItem.slug)
+      );
+
+      if (exists) {
+        // tetap notify biar UI sinkron
+        notify();
+        return { isOk: true, data: newItem, message: "already exists" };
+      }
+
+      data.push(newItem);
+      save(data);
+      notify();
+      return { isOk: true, data: newItem };
+    },
+
+    // Script kamu pakai window.dataSdk.delete(game)
+    async delete(gameOrObj) {
+      const data = load();
+
+      const targetId =
+        (gameOrObj && (gameOrObj.__backendId || gameOrObj.id || gameOrObj.slug)) || null;
+
+      if (!targetId) {
+        return { isOk: false, error: "missing id" };
+      }
+
+      const next = data.filter(g =>
+        g.__backendId !== targetId &&
+        g.id !== targetId &&
+        g.slug !== targetId
+      );
+
+      save(next);
+      notify();
+      return { isOk: true };
+    },
+
+    // Bonus: alias kalau suatu saat kamu panggil remove()
+    async remove(id) {
+      return this.delete({ id });
+    }
+  };
+})();
+
+    // ==================== CONFIG & STATE ====================
+    const RAWG_API_KEY = "6f2ec9dfb0834586ab53b2907ac306b3";
+    const RAWG_BASE_URL = "https://api.rawg.io/api";
+    const MAX_CONCURRENT_REQUESTS = 3;
+    const AUTO_RETRY_COUNT = 2;
+    const AUTO_RETRY_DELAYS = [1000, 2000, 4000];
+
+    const defaultConfig = {
+      site_title: "RENZGAME PS2 GAME CATALOG",
+      whatsapp_number: "6285712693515",
+      admin_password: "@admin123",
+      promo_text: "🔥 PROMO: Beli 10 Game GRATIS 1 Game!",
+      instruction_1: "Pilih game favorit Anda atau cari di kotak pencarian",
+      instruction_2: "Buka bar ORDER jika sudah selesai memilih",
+      instruction_3: "Masukkan Nama Lengkap Anda untuk konfirmasi pesanan",
+      instruction_4: "Kirim daftar tersebut langsung ke WhatsApp Admin",
+      font_family: "Rubik",
+      font_size: 16,
+      background_color: "#0a0a0f",
+      surface_color: "#12121a",
+      text_color: "#e0e0ff",
+      accent_color: "#00ffaa",
+      secondary_color: "#ff00aa"
+    };
+
+    let catalogGames = [];
+    let orderList = [];
+    let currentModalGame = null;
+
+    // ✅ tambahan: flag apakah modal sedang preview RAWG atau katalog
+    let currentModalIsRawg = false;
+
+    let lightboxImages = [];
+    let lightboxIndex = 0;
+    let searchDebounceTimer = null;
+    let adminLoggedIn = false;
+    let currentConfig = { ...defaultConfig };
+    let importInProgress = false;
+    let failedImportItems = [];
+    let importStats = { total: 0, success: 0, failed: 0, pending: 0 };
+
+    // ==================== SDK INITIALIZATION ====================
+    const dataHandler = {
+      onDataChanged(data) {
+        catalogGames = data || [];
+        renderCatalog();
+        renderAdminCatalog();
+        updateGameCardStates();
+      }
+    };
+
+    async function initializeApp() {
+      if (window.dataSdk) {
+        const result = await window.dataSdk.init(dataHandler);
+        if (!result.isOk) {
+          console.error("Failed to initialize data SDK");
+          showToast("dataSdk tidak tersedia");
+        }
+      } else {
+        showToast("dataSdk tidak tersedia");
+      }
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (config) => {
+            currentConfig = config;
+            applyConfig(config);
+          },
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              { get: () => config.background_color || defaultConfig.background_color,
+                set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+              { get: () => config.surface_color || defaultConfig.surface_color,
+                set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+              { get: () => config.text_color || defaultConfig.text_color,
+                set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+              { get: () => config.accent_color || defaultConfig.accent_color,
+                set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+              { get: () => config.secondary_color || defaultConfig.secondary_color,
+                set: (v) => { config.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); } }
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => config.font_family || defaultConfig.font_family,
+              set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+            },
+            fontSizeable: {
+              get: () => config.font_size || defaultConfig.font_size,
+              set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+            }
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ["site_title", config.site_title || defaultConfig.site_title],
+            ["whatsapp_number", config.whatsapp_number || defaultConfig.whatsapp_number],
+            ["admin_password", config.admin_password || defaultConfig.admin_password],
+            ["promo_text", config.promo_text || defaultConfig.promo_text],
+            ["instruction_1", config.instruction_1 || defaultConfig.instruction_1],
+            ["instruction_2", config.instruction_2 || defaultConfig.instruction_2],
+            ["instruction_3", config.instruction_3 || defaultConfig.instruction_3],
+            ["instruction_4", config.instruction_4 || defaultConfig.instruction_4]
+          ])
+        });
+      }
+
+      setupEventListeners();
+      applyConfig(currentConfig);
+    }
+
+    function applyConfig(config) {
+      document.getElementById('site-title').textContent = config.site_title || defaultConfig.site_title;
+      document.getElementById('promo-sticky-text').textContent = config.promo_text || defaultConfig.promo_text;
+
+      document.getElementById('instruction-1').textContent = config.instruction_1 || defaultConfig.instruction_1;
+      document.getElementById('instruction-2').textContent = config.instruction_2 || defaultConfig.instruction_2;
+      document.getElementById('instruction-3').textContent = config.instruction_3 || defaultConfig.instruction_3;
+      document.getElementById('instruction-4').textContent = config.instruction_4 || defaultConfig.instruction_4;
+
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+
+      document.documentElement.style.setProperty('--bg-primary', bgColor);
+      document.documentElement.style.setProperty('--bg-secondary', surfaceColor);
+      document.documentElement.style.setProperty('--text-primary', textColor);
+      document.documentElement.style.setProperty('--accent-primary', accentColor);
+      document.documentElement.style.setProperty('--accent-secondary', secondaryColor);
+      document.body.style.fontFamily = `${config.font_family || defaultConfig.font_family}, sans-serif`;
+      document.body.style.fontSize = `${config.font_size || defaultConfig.font_size}px`;
+    }
+
+    // ==================== ADMIN LOGIN ====================
+    function showLoginModal() {
+      document.getElementById('login-modal').classList.remove('hidden');
+      document.getElementById('admin-password-input').focus();
+    }
+    function closeLoginModal() {
+      document.getElementById('login-modal').classList.add('hidden');
+      document.getElementById('admin-password-input').value = '';
+    }
+    function attemptAdminLogin() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const correctPassword = config.admin_password || defaultConfig.admin_password;
+      const inputPassword = document.getElementById('admin-password-input').value;
+
+      if (inputPassword === correctPassword) {
+        adminLoggedIn = true;
+        closeLoginModal();
+        togglePanel('admin-panel', true);
+        showToast('Admin login berhasil!');
+      } else {
+        showToast('Password salah!');
+        document.getElementById('admin-password-input').value = '';
+      }
+    }
+
+    // ==================== RAWG API FUNCTIONS ====================
+    async function searchRAWG(query) {
+      if (!query || query.length < 2) return [];
+      try {
+        const response = await fetch(
+          `${RAWG_BASE_URL}/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(query)}&page_size=20&platforms=15`
+        );
+        if (!response.ok) throw new Error('RAWG API error');
+        const data = await response.json();
+        return data.results || [];
+      } catch (error) {
+        console.error('RAWG search error:', error);
+        return [];
+      }
+    }
+
+    async function getGameDetails(gameId) {
+      try {
+        const [gameResponse, screenshotsResponse, moviesResponse] = await Promise.all([
+          fetch(`${RAWG_BASE_URL}/games/${gameId}?key=${RAWG_API_KEY}`),
+          fetch(`${RAWG_BASE_URL}/games/${gameId}/screenshots?key=${RAWG_API_KEY}`),
+          fetch(`${RAWG_BASE_URL}/games/${gameId}/movies?key=${RAWG_API_KEY}`)
+        ]);
+
+        const game = await gameResponse.json();
+        const screenshots = await screenshotsResponse.json();
+        const movies = await moviesResponse.json();
+
+        return {
+          ...game,
+          screenshots: screenshots.results || [],
+          movies: movies.results || []
+        };
+      } catch (error) {
+        console.error('Get game details error:', error);
+        return null;
+      }
+    }
+
+    // ==================== UNIFIED SEARCH ====================
+    function handleUnifiedSearch(query) {
+      clearTimeout(searchDebounceTimer);
+
+      const loadingEl = document.getElementById('search-loading');
+      const resultsEl = document.getElementById('search-results');
+
+      if (!query || query.length < 2) {
+        resultsEl.classList.add('hidden');
+        return;
+      }
+
+      loadingEl.classList.remove('hidden');
+
+      searchDebounceTimer = setTimeout(async () => {
+        const catalogSection = document.getElementById('catalog-results-section');
+        const catalogGrid = document.getElementById('catalog-results-grid');
+        const rawgSection = document.getElementById('rawg-results-section');
+        const rawgGrid = document.getElementById('rawg-results-grid');
+        const noResults = document.getElementById('no-results');
+
+        const queryLower = query.toLowerCase();
+        const catalogResults = catalogGames.filter(game =>
+          (game.name || '').toLowerCase().includes(queryLower)
+        );
+
+        if (catalogResults.length > 0) {
+          catalogSection.classList.remove('hidden');
+          catalogGrid.innerHTML = catalogResults.map(game => createGameCard(game, false)).join('');
+        } else {
+          catalogSection.classList.add('hidden');
+        }
+
+        const rawgResults = await searchRAWG(query);
+
+        if (rawgResults.length > 0) {
+          rawgSection.classList.remove('hidden');
+          rawgGrid.innerHTML = rawgResults.map(game => createGameCard(game, true)).join('');
+        } else {
+          rawgSection.classList.add('hidden');
+        }
+
+        if (catalogResults.length === 0 && rawgResults.length === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+
+        resultsEl.classList.remove('hidden');
+        loadingEl.classList.add('hidden');
+      }, 300);
+    }
+
+    function createGameCard(game, isRawgResult = false) {
+      const inOrder = orderList.some(o => o.id === game.id || o.slug === game.slug);
+      const posterUrl = game.background_image || '';
+      const cardId = `card-${game.slug || game.id}`;
+
+      return `
+        <div id="${cardId}" class="game-card card-hover rounded-xl overflow-hidden bg-gray-900/80 border border-cyan-500/20 cursor-pointer group ${inOrder ? 'selected' : ''}"
+             onclick="${isRawgResult ? `previewRawgGame('${game.slug}')` : `openGameModal('${game.id}')`}">
+          <div class="aspect-[3/4] relative overflow-hidden">
+            <div class="selected-badge">✓</div>
+            ${posterUrl ? `
+              <img src="${posterUrl}" alt="${game.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="absolute inset-0 bg-gradient-to-br from-cyan-900 to-pink-900 items-center justify-center hidden">
+                <span class="text-4xl">🎮</span>
+              </div>
+            ` : `
+              <div class="absolute inset-0 bg-gradient-to-br from-cyan-900 to-pink-900 flex items-center justify-center">
+                <span class="text-4xl">🎮</span>
+              </div>
+            `}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <button class="absolute top-2 right-2 p-2 rounded-full ${inOrder ? 'bg-pink-500' : 'bg-cyan-500/80 hover:bg-cyan-500'} text-white transition-all opacity-0 group-hover:opacity-100"
+                    onclick="event.stopPropagation(); ${isRawgResult ? `requestGameFromRawg('${game.slug}')` : `toggleOrder('${game.id}')`}">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                ${inOrder ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>'}
+              </svg>
+            </button>
+          </div>
+          <div class="p-3">
+            <h3 class="font-semibold text-sm text-white truncate">${game.name}</h3>
+            ${game.rating ? `<div class="text-xs text-yellow-400 mt-1">⭐ ${Number(game.rating).toFixed(1)}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    // ==================== CATALOG FUNCTIONS ====================
+    function renderCatalog() {
+      const grid = document.getElementById('catalog-grid');
+      const emptyState = document.getElementById('empty-catalog');
+      const countEl = document.getElementById('catalog-count');
+
+      countEl.textContent = `${catalogGames.length} games`;
+
+      if (catalogGames.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = catalogGames.map(game => createGameCard(game, false)).join('');
+    }
+
+    // ==================== ADMIN FUNCTIONS ====================
+    function handleAdminSearch(query) {
+      clearTimeout(searchDebounceTimer);
+
+      const loadingEl = document.getElementById('admin-search-loading');
+      const resultsEl = document.getElementById('admin-search-results');
+
+      if (!query || query.length < 2) {
+        resultsEl.classList.add('hidden');
+        return;
+      }
+
+      loadingEl.classList.remove('hidden');
+
+      searchDebounceTimer = setTimeout(async () => {
+        const results = await searchRAWG(query);
+        loadingEl.classList.add('hidden');
+        resultsEl.classList.remove('hidden');
+
+        if (results.length === 0) {
+          resultsEl.innerHTML = '<p class="text-gray-400 text-center py-4">Tidak ditemukan di RAWG</p>';
+        } else {
+          resultsEl.innerHTML = results.slice(0, 10).map(game => `
+            <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-purple-500/20 cursor-pointer transition-all" onclick="addGameToCatalog('${game.slug}')">
+              <img src="${game.background_image || ''}" alt="${game.name}" class="w-12 h-12 rounded object-cover bg-gray-700" loading="lazy"
+                   onerror="this.src=''; this.className='w-12 h-12 rounded bg-gray-700';">
+              <div class="flex-1 min-w-0">
+                <p class="text-white text-sm font-medium truncate">${game.name}</p>
+                <p class="text-gray-400 text-xs">${game.released || 'N/A'}</p>
+              </div>
+              <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+            </div>
+          `).join('');
+        }
+      }, 400);
+    }
+
+    async function addGameToCatalog(slug) {
+      if (catalogGames.some(g => g.slug === slug)) {
+        showToast('Game sudah ada di katalog!');
+        return;
+      }
+
+      if (catalogGames.length >= 999) {
+        showToast('Batas maksimum 999 game tercapai!');
+        return;
+      }
+
+      showToast('Mengambil data game...');
+      const details = await getGameDetails(slug);
+
+      if (!details) {
+        showToast('Gagal mengambil data game');
+        return;
+      }
+
+      const gameData = {
+        id: details.slug,
+        name: details.name,
+        slug: details.slug,
+        background_image: details.background_image || '',
+        description: details.description_raw || details.description || '',
+        released: details.released || '',
+        rating: details.rating || 0,
+        genres: (details.genres || []).map(g => g.name).join(', '),
+        developers: (details.developers || []).map(d => d.name).join(', '),
+        publishers: (details.publishers || []).map(p => p.name).join(', '),
+        screenshots: JSON.stringify((details.screenshots || []).map(s => s.image)),
+        trailer: details.movies && details.movies.length > 0 ? (details.movies[0].data?.max || details.movies[0].data?.['480'] || '') : '',
+        added_at: new Date().toISOString()
+      };
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.create(gameData);
+        if (result.isOk) {
+          showToast(`"${details.name}" ditambahkan!`);
+          document.getElementById('admin-game-input').value = '';
+          document.getElementById('admin-search-results').classList.add('hidden');
+        } else {
+          showToast('Gagal menyimpan game');
+        }
+      } else {
+        showToast("dataSdk tidak tersedia");
+      }
+    }
+
+    async function removeGameFromCatalog(gameId) {
+      const game = catalogGames.find(g => g.__backendId === gameId);
+      if (!game) return;
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.delete(game);
+        if (result.isOk) {
+          showToast(`"${game.name}" dihapus`);
+        }
+      }
+    }
+
+    // ==================== IMPORT WITH ADVANCED RETRY SYSTEM ====================
+    async function fetchGameWithRetry(title, attemptsLeft = AUTO_RETRY_COUNT) {
+      try {
+        const results = await searchRAWG(title);
+        if (results.length > 0) {
+          return { success: true, game: results[0], title, attempts: AUTO_RETRY_COUNT - attemptsLeft };
+        }
+
+        if (attemptsLeft > 0) {
+          const delay = AUTO_RETRY_DELAYS[AUTO_RETRY_COUNT - attemptsLeft - 1];
+          await new Promise(resolve => setTimeout(resolve, delay));
+          return fetchGameWithRetry(title, attemptsLeft - 1);
+        }
+
+        return { success: false, title, reason: 'not_found', attempts: AUTO_RETRY_COUNT };
+      } catch (error) {
+        if (attemptsLeft > 0) {
+          const delay = AUTO_RETRY_DELAYS[AUTO_RETRY_COUNT - attemptsLeft - 1];
+          await new Promise(resolve => setTimeout(resolve, delay));
+          return fetchGameWithRetry(title, attemptsLeft - 1);
+        }
+
+        const reason = (error.message || '').includes('429') ? 'rate_limit' : 'timeout';
+        return { success: false, title, reason, error: error.message, attempts: AUTO_RETRY_COUNT };
+      }
+    }
+
+    async function bulkImportGames() {
+      if (importInProgress) return;
+
+      const textarea = document.getElementById('bulk-import-text');
+      const progressEl = document.getElementById('import-progress');
+      const progressBar = document.getElementById('import-progress-bar');
+      const progressText = document.getElementById('import-progress-text');
+      const resultsEl = document.getElementById('import-results');
+      const summaryEl = document.getElementById('import-summary');
+      const actionsEl = document.getElementById('import-actions');
+      const importBtn = document.getElementById('bulk-import-btn');
+
+      let lines = textarea.value.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0);
+
+      lines = [...new Set(lines)];
+      failedImportItems = [];
+
+      if (lines.length === 0) {
+        showToast('Masukkan judul game terlebih dahulu');
+        return;
+      }
+
+      importInProgress = true;
+      importBtn.disabled = true;
+      progressEl.classList.remove('hidden');
+      resultsEl.innerHTML = '';
+      resultsEl.classList.remove('hidden');
+      summaryEl.classList.remove('hidden');
+      actionsEl.classList.add('hidden');
+
+      importStats = { total: lines.length, success: 0, failed: 0, pending: 0 };
+      const results = [];
+
+      for (let i = 0; i < lines.length; i += MAX_CONCURRENT_REQUESTS) {
+        const batch = lines.slice(i, i + MAX_CONCURRENT_REQUESTS);
+        const batchPromises = batch.map(title => fetchGameWithRetry(title));
+        const batchResults = await Promise.allSettled(batchPromises);
+
+        for (const result of batchResults) {
+          if (result.status === 'fulfilled' && result.value) {
+            const { success, game, title, reason, attempts } = result.value;
+
+            if (success) {
+              if (catalogGames.length >= 999) {
+                results.push({ title, status: 'LIMIT', message: 'Batas katalog tercapai', attempts });
+                failedImportItems.push({ title, reason: 'limit' });
+                importStats.failed++;
+                continue;
+              }
+
+              if (catalogGames.some(g => g.slug === game.slug)) {
+                results.push({ title, status: 'DUPLICATE', message: 'Sudah ada di katalog', attempts });
+                failedImportItems.push({ title, reason: 'duplicate' });
+                importStats.failed++;
+                continue;
+              }
+
+              const details = await getGameDetails(game.slug);
+              if (details) {
+                const gameData = {
+                  id: details.slug,
+                  name: details.name,
+                  slug: details.slug,
+                  background_image: details.background_image || '',
+                  description: details.description_raw || details.description || '',
+                  released: details.released || '',
+                  rating: details.rating || 0,
+                  genres: (details.genres || []).map(g => g.name).join(', '),
+                  developers: (details.developers || []).map(d => d.name).join(', '),
+                  publishers: (details.publishers || []).map(p => p.name).join(', '),
+                  screenshots: JSON.stringify((details.screenshots || []).map(s => s.image)),
+                  trailer: details.movies && details.movies.length > 0 ? (details.movies[0].data?.max || details.movies[0].data?.['480'] || '') : '',
+                  added_at: new Date().toISOString()
+                };
+
+                if (window.dataSdk) {
+                  const saveResult = await window.dataSdk.create(gameData);
+                  if (saveResult.isOk) {
+                    results.push({ title, status: 'SUCCESS', message: '✓ Berhasil', attempts });
+                    importStats.success++;
+                  } else {
+                    results.push({ title, status: 'ERROR', message: 'Gagal menyimpan', attempts });
+                    failedImportItems.push({ title, reason: 'save_error' });
+                    importStats.failed++;
+                  }
+                } else {
+                  results.push({ title, status: 'ERROR', message: 'dataSdk tidak tersedia', attempts });
+                  failedImportItems.push({ title, reason: 'dataSdk_missing' });
+                  importStats.failed++;
+                }
+              } else {
+                results.push({ title, status: 'ERROR', message: 'Gagal ambil detail', attempts });
+                failedImportItems.push({ title, reason: 'fetch_details' });
+                importStats.failed++;
+              }
+            } else {
+              const reasonText = reason === 'not_found' ? 'Tidak ditemukan' :
+                               reason === 'rate_limit' ? 'Rate limit RAWG' : 'Timeout/Error';
+              results.push({ title, status: reason === 'not_found' ? 'NOT_FOUND' : 'ERROR', message: reasonText, attempts });
+              failedImportItems.push({ title, reason });
+              importStats.failed++;
+            }
+          }
+
+          const currentIndex = results.length;
+          progressText.textContent = `${currentIndex}/${importStats.total}`;
+          progressBar.style.width = `${(currentIndex / importStats.total) * 100}%`;
+
+          document.getElementById('summary-total').textContent = importStats.total;
+          document.getElementById('summary-success').textContent = importStats.success;
+          document.getElementById('summary-failed').textContent = importStats.failed;
+          document.getElementById('summary-pending').textContent = failedImportItems.length;
+
+          const lastResult = results[results.length - 1];
+          const statusIcon = lastResult.status === 'SUCCESS' ? '✓' :
+                            lastResult.status === 'NOT_FOUND' ? '⚠' : '✕';
+          const statusClass = lastResult.status === 'SUCCESS' ? 'import-item success' :
+                             lastResult.status === 'NOT_FOUND' ? 'import-item retry' : 'import-item failed';
+
+          const resultHtml = `
+            <div class="${statusClass}">
+              <span class="import-status-icon">${statusIcon}</span>
+              <span><strong>${lastResult.title}</strong> - ${lastResult.message}</span>
+              ${lastResult.status !== 'SUCCESS' ? `<button class="retry-btn-small" onclick="retryFailedItem('${lastResult.title.replace(/'/g, "\\'")}')">Retry</button>` : ''}
+            </div>
+          `;
+          resultsEl.innerHTML += resultHtml;
+          resultsEl.scrollTop = resultsEl.scrollHeight;
+
+          await new Promise(resolve => setTimeout(resolve, 50));
+        }
+      }
+
+      setTimeout(() => {
+        importBtn.disabled = false;
+        importInProgress = false;
+
+        if (failedImportItems.length > 0) {
+          actionsEl.classList.remove('hidden');
+        }
+
+        showToast(`Import selesai: ${importStats.success} berhasil, ${importStats.failed} gagal`);
+      }, 300);
+    }
+
+    async function retryFailedItem(title) {
+      const resultIndex = failedImportItems.findIndex(item => item.title === title);
+      if (resultIndex < 0) return;
+
+      showToast(`Retry: ${title}...`);
+      const { success, game } = await fetchGameWithRetry(title);
+
+      if (success && game) {
+        if (catalogGames.some(g => g.slug === game.slug)) {
+          showToast(`${title} sudah ada di katalog`);
+          return;
+        }
+
+        const details = await getGameDetails(game.slug);
+        if (details) {
+          const gameData = {
+            id: details.slug,
+            name: details.name,
+            slug: details.slug,
+            background_image: details.background_image || '',
+            description: details.description_raw || details.description || '',
+            released: details.released || '',
+            rating: details.rating || 0,
+            genres: (details.genres || []).map(g => g.name).join(', '),
+            developers: (details.developers || []).map(d => d.name).join(', '),
+            publishers: (details.publishers || []).map(p => p.name).join(', '),
+            screenshots: JSON.stringify((details.screenshots || []).map(s => s.image)),
+            trailer: details.movies && details.movies.length > 0 ? (details.movies[0].data?.max || details.movies[0].data?.['480'] || '') : '',
+            added_at: new Date().toISOString()
+          };
+
+          if (window.dataSdk) {
+            const saveResult = await window.dataSdk.create(gameData);
+            if (saveResult.isOk) {
+              failedImportItems.splice(resultIndex, 1);
+              importStats.success++;
+              importStats.failed--;
+              showToast(`${title} berhasil ditambahkan!`);
+
+              document.getElementById('summary-success').textContent = importStats.success;
+              document.getElementById('summary-failed').textContent = importStats.failed;
+              document.getElementById('summary-pending').textContent = failedImportItems.length;
+            } else {
+              showToast(`${title} masih gagal disimpan`);
+            }
+          } else {
+            showToast("dataSdk tidak tersedia");
+          }
+        }
+      } else {
+        showToast(`${title} masih gagal di-retry`);
+      }
+    }
+
+    function exportFailedList() {
+      if (failedImportItems.length === 0) {
+        showToast('Tidak ada item yang gagal');
+        return;
+      }
+
+      const failedList = failedImportItems.map(item => item.title).join('\n');
+      const element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(failedList));
+      element.setAttribute('download', `failed-imports-${Date.now()}.txt`);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+      showToast('File failed imports diunduh');
+    }
+
+    function renderAdminCatalog() {
+      const listEl = document.getElementById('admin-catalog-list');
+      const emptyEl = document.getElementById('admin-empty');
+      const countEl = document.getElementById('admin-catalog-count');
+
+      countEl.textContent = `${catalogGames.length} games`;
+
+      if (catalogGames.length === 0) {
+        listEl.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      listEl.innerHTML = catalogGames.map(game => `
+        <div class="flex items-center gap-3 p-2 rounded-lg bg-gray-800/50 group">
+          <img src="${game.background_image || ''}" alt="${game.name}" class="w-10 h-10 rounded object-cover bg-gray-700" loading="lazy"
+               onerror="this.src=''; this.className='w-10 h-10 rounded bg-gray-700';">
+          <span class="flex-1 text-sm text-white truncate">${game.name}</span>
+          <button class="p-1.5 rounded bg-red-500/20 hover:bg-red-500/40 text-red-400 opacity-0 group-hover:opacity-100 transition-all"
+                  onclick="removeGameFromCatalog('${game.__backendId}')">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // ==================== ORDER FUNCTIONS ====================
+
+    // ✅ helper: cek apakah game order ada di katalog
+    function isInCatalog(item) {
+      const key = (item.slug || item.id || "").toString();
+      return catalogGames.some(g => ((g.slug || g.id || "").toString() === key));
+    }
+
+    function addToOrder(game) {
+      const existing = orderList.find(o => o.id === game.id || o.slug === game.slug);
+      if (!existing) {
+        orderList.push({ ...game, quantity: 1 });
+      }
+      updateOrderUI();
+      updateGameCardStates();
+    }
+
+    function toggleOrder(gameId) {
+      const game = catalogGames.find(g => g.id === gameId || g.__backendId === gameId);
+      if (!game) return;
+
+      const existingIndex = orderList.findIndex(o => o.id === game.id || o.slug === game.slug);
+      if (existingIndex >= 0) {
+        orderList.splice(existingIndex, 1);
+        showToast(`"${game.name}" dihapus dari order`);
+      } else {
+        orderList.push({ ...game, quantity: 1, isRequest: false });
+        showToast(`"${game.name}" ditambahkan!`);
+      }
+      updateOrderUI();
+      updateGameCardStates();
+    }
+
+    function updateGameCardStates() {
+      catalogGames.forEach(game => {
+        const cardId = `card-${game.slug || game.id}`;
+        const card = document.getElementById(cardId);
+        if (card) {
+          const inOrder = orderList.some(o => o.id === game.id || o.slug === game.slug);
+          if (inOrder) card.classList.add('selected');
+          else card.classList.remove('selected');
+        }
+      });
+    }
+
+    function removeFromOrder(index) {
+      const game = orderList[index];
+      orderList.splice(index, 1);
+      showToast(`"${game.name}" dihapus dari order`);
+      updateOrderUI();
+      updateGameCardStates();
+    }
+
+    // ✅ updateOrderUI: tambahkan badge "Sudah ada di katalog" vs "Belum ada (Request)"
+    function updateOrderUI() {
+      const countEl = document.getElementById('order-count');
+      const itemsEl = document.getElementById('order-items');
+      const emptyEl = document.getElementById('empty-order');
+      const summaryEl = document.getElementById('order-summary');
+      const customerEl = document.getElementById('customer-section');
+      const whatsappBtn = document.getElementById('send-whatsapp');
+
+      if (orderList.length > 0) {
+        countEl.textContent = orderList.length;
+        countEl.classList.remove('hidden');
+      } else {
+        countEl.classList.add('hidden');
+      }
+
+      if (orderList.length === 0) {
+        emptyEl.classList.remove('hidden');
+        summaryEl.classList.add('hidden');
+        customerEl.classList.add('hidden');
+        whatsappBtn.classList.add('hidden');
+        itemsEl.innerHTML = '';
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      summaryEl.classList.remove('hidden');
+      customerEl.classList.remove('hidden');
+      whatsappBtn.classList.remove('hidden');
+
+      itemsEl.innerHTML = orderList.map((item, index) => {
+        const inCatalog = isInCatalog(item);
+        const badge = inCatalog
+          ? `<span class="text-xs px-2 py-1 rounded-full bg-green-500/15 border border-green-500/30 text-green-300">✅ Sudah ada di katalog</span>`
+          : `<span class="text-xs px-2 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-300">⬇️ Belum ada (Request)</span>`;
+
+        return `
+          <div class="flex items-center gap-3 p-3 rounded-xl bg-gray-800/80 border border-cyan-500/20">
+            <img src="${item.background_image || ''}" alt="${item.name}" class="w-12 h-12 rounded-lg object-cover bg-gray-700" loading="lazy"
+                 onerror="this.src=''; this.className='w-12 h-12 rounded-lg bg-gray-700';">
+            <div class="flex-1 min-w-0">
+              <p class="text-white font-medium truncate text-sm md:text-base">${item.name}</p>
+              <div class="mt-1 flex flex-wrap gap-2">${badge}</div>
+            </div>
+            <button class="p-2 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-400 transition-all" onclick="removeFromOrder(${index})">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      const totalGames = orderList.length;
+      const bonusGames = Math.floor(totalGames / 10);
+      const finalTotal = totalGames + bonusGames;
+
+      document.getElementById('summary-total-order').textContent = totalGames;
+      document.getElementById('summary-bonus').textContent = bonusGames;
+      document.getElementById('summary-final').textContent = `${finalTotal} Game`;
+    }
+
+    function sendToWhatsApp() {
+      const customerName = document.getElementById('customer-name').value.trim();
+      if (!customerName) {
+        showToast('Masukkan nama lengkap terlebih dahulu');
+        return;
+      }
+
+      const config = window.elementSdk?.config || currentConfig;
+      const whatsappNumber = config.whatsapp_number || defaultConfig.whatsapp_number;
+
+      const totalGames = orderList.length;
+      const bonusGames = Math.floor(totalGames / 10);
+      const finalTotal = totalGames + bonusGames;
+
+      // berdasarkan status katalog
+      const catalogGamesOrder = orderList.filter(g => isInCatalog(g));
+      const requestGamesOrder = orderList.filter(g => !isInCatalog(g));
+
+      let message = `Halo Admin, saya mau order jasa instal game PS2.\n\n`;
+      message += `Nama: ${customerName}\n`;
+      message += `Jumlah dipilih: ${totalGames} game\n`;
+      message += `Bonus promo: ${bonusGames} game\n`;
+      message += `Total game: ${finalTotal} game\n\n`;
+      message += `Daftar game:\n`;
+
+      if (catalogGamesOrder.length > 0) {
+        message += `\n📀 Sudah Ada di Katalog:\n`;
+        catalogGamesOrder.forEach((game, i) => { message += `${i + 1}. ${game.name}\n`; });
+      }
+
+      if (requestGamesOrder.length > 0) {
+        message += `\n⬇️ Belum Ada (Request / Perlu Disiapkan):\n`;
+        requestGamesOrder.forEach((game, i) => { message += `${i + 1}. ${game.name}\n`; });
+      }
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      window.open(whatsappUrl, '_blank');
+      showToast('Membuka WhatsApp...');
+    }
+
+    // ==================== MODAL FUNCTIONS ====================
+    function openGameModal(gameId) {
+      const game = catalogGames.find(g => g.id === gameId || g.__backendId === gameId);
+      if (game) showGameModal(game, false);
+    }
+
+    async function previewRawgGame(slug) {
+      const details = await getGameDetails(slug);
+      if (details) showGameModal(details, true);
+    }
+
+    async function requestGameFromRawg(slug) {
+      const details = await getGameDetails(slug);
+      if (details) {
+        addToOrder({
+          id: details.slug,
+          name: details.name,
+          slug: details.slug,
+          background_image: details.background_image || '',
+          isRequest: true
+        });
+        updateGameCardStates();
+        showToast(`"${details.name}" ditambahkan ke order!`);
+      }
+    }
+
+    // ✅ showGameModal: tampilkan badge kalau RAWG
+    async function showGameModal(game, isRawg = false) {
+      currentModalGame = game;
+      currentModalIsRawg = isRawg;
+
+      const modal = document.getElementById('game-modal');
+
+      const heroEl = document.getElementById('modal-hero');
+      heroEl.style.backgroundImage = game.background_image ? `url(${game.background_image})` : 'linear-gradient(135deg, #1a1a2e, #0a0a0f)';
+
+      document.getElementById('modal-title').textContent = game.name;
+
+      const metaEl = document.getElementById('modal-meta');
+      let metaHtml = '';
+
+      if (game.released) metaHtml += `<span class="px-2 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs">📅 ${game.released}</span>`;
+      if (game.rating) metaHtml += `<span class="px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs">⭐ ${typeof game.rating === 'number' ? game.rating.toFixed(1) : game.rating}</span>`;
+
+      if (game.genres) {
+        const genres = typeof game.genres === 'string' ? game.genres : (game.genres || []).map(g => g.name).join(', ');
+        if (genres) metaHtml += `<span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs">🎭 ${genres}</span>`;
+      }
+
+      if (isRawg) {
+        metaHtml += `<span class="px-2 py-1 rounded-full bg-pink-500/20 text-pink-300 text-xs">📥 Request (RAWG)</span>`;
+      }
+
+      metaEl.innerHTML = metaHtml;
+
+      let description = game.description_raw || game.description || '';
+      description = description.replace(/<[^>]*>/g, '').substring(0, 500);
+      document.getElementById('modal-description').textContent = description || 'Tidak ada deskripsi tersedia.';
+
+      const screenshotsSection = document.getElementById('modal-screenshots-section');
+      const screenshotsEl = document.getElementById('modal-screenshots');
+
+      let screenshots = [];
+      if (typeof game.screenshots === 'string') {
+        try { screenshots = JSON.parse(game.screenshots); } catch (e) { screenshots = []; }
+      } else if (Array.isArray(game.screenshots)) {
+        screenshots = game.screenshots.map(s => s.image || s);
+      }
+
+      if (screenshots.length > 0) {
+        screenshotsSection.classList.remove('hidden');
+        lightboxImages = screenshots;
+        screenshotsEl.innerHTML = screenshots.map((url, index) => `
+          <img src="${url}" alt="Screenshot ${index + 1}" class="rounded-lg cursor-pointer hover:opacity-80 transition-all object-cover aspect-video" loading="lazy"
+               onclick="openLightbox(${index})" onerror="this.style.display='none';">
+        `).join('');
+      } else {
+        screenshotsSection.classList.add('hidden');
+      }
+
+      const videoSection = document.getElementById('modal-video-section');
+      const videoEl = document.getElementById('modal-video');
+
+      let trailer = game.trailer;
+      if (!trailer && game.movies && game.movies.length > 0) {
+        trailer = game.movies[0].data?.max || game.movies[0].data?.['480'] || '';
+      }
+
+      if (trailer) {
+        videoSection.classList.remove('hidden');
+        videoEl.innerHTML = `
+          <video controls class="w-full h-full" preload="metadata">
+            <source src="${trailer}" type="video/mp4">
+            Browser tidak mendukung video.
+          </video>
+        `;
+      } else {
+        videoSection.classList.add('hidden');
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeGameModal() {
+      document.getElementById('game-modal').classList.add('hidden');
+      currentModalGame = null;
+      currentModalIsRawg = false;
+    }
+
+    // ✅ addCurrentGameToOrder: kalau modal RAWG, tandai sebagai request
+    function addCurrentGameToOrder() {
+      if (!currentModalGame) return;
+
+      const item = {
+        id: currentModalGame.slug || currentModalGame.id,
+        name: currentModalGame.name,
+        slug: currentModalGame.slug || currentModalGame.id,
+        background_image: currentModalGame.background_image || '',
+        isRequest: !!currentModalIsRawg
+      };
+
+      addToOrder(item);
+      updateGameCardStates();
+      showToast(`"${item.name}" ditambahkan ke order!`);
+      closeGameModal();
+    }
+
+    // ==================== LIGHTBOX ====================
+    function openLightbox(index) {
+      lightboxIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').classList.remove('hidden');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+    }
+    function updateLightbox() {
+      document.getElementById('lightbox-image').src = lightboxImages[lightboxIndex];
+      document.getElementById('lightbox-counter').textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+    }
+    function prevLightbox() {
+      lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+      updateLightbox();
+    }
+    function nextLightbox() {
+      lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+      updateLightbox();
+    }
+
+    // ==================== UI HELPERS ====================
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = message;
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      toast.style.opacity = '1';
+
+      setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(80px)';
+        toast.style.opacity = '0';
+      }, 3000);
+    }
+
+    function togglePanel(panelId, show) {
+      const panel = document.getElementById(panelId);
+      if (show) panel.classList.remove('hidden');
+      else panel.classList.add('hidden');
+    }
+
+    // ==================== DRAG & DROP ====================
+    function setupDragDrop() {
+      const dropArea = document.getElementById('drag-drop-area');
+      const fileInput = document.getElementById('file-input');
+
+      dropArea.addEventListener('click', () => fileInput.click());
+
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.classList.add('drag-over'), false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.classList.remove('drag-over'), false);
+      });
+
+      dropArea.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+      }, false);
+
+      fileInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+      });
+    }
+
+    function handleFiles(files) {
+      if (files.length === 0) return;
+      const file = files[0];
+      if (!file.name.endsWith('.txt')) {
+        showToast('Hanya file .txt yang didukung');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        document.getElementById('bulk-import-text').value = content;
+        showToast('File berhasil dimuat');
+      };
+      reader.readAsText(file);
+    }
+
+    // ==================== EVENT LISTENERS ====================
+    function setupEventListeners() {
+      document.getElementById('admin-toggle').addEventListener('click', () => {
+        if (!adminLoggedIn) showLoginModal();
+        else togglePanel('admin-panel', true);
+      });
+
+      document.getElementById('login-btn').addEventListener('click', attemptAdminLogin);
+      document.getElementById('login-cancel').addEventListener('click', closeLoginModal);
+      document.getElementById('admin-password-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') attemptAdminLogin();
+      });
+
+      document.getElementById('unified-search').addEventListener('input', (e) => {
+        handleUnifiedSearch(e.target.value);
+      });
+
+      document.getElementById('admin-close').addEventListener('click', () => togglePanel('admin-panel', false));
+      document.getElementById('admin-overlay').addEventListener('click', () => togglePanel('admin-panel', false));
+
+      document.getElementById('admin-game-input').addEventListener('input', (e) => {
+        handleAdminSearch(e.target.value);
+      });
+
+      document.getElementById('bulk-import-btn').addEventListener('click', bulkImportGames);
+      document.getElementById('retry-failed-btn').addEventListener('click', () => {
+        if (failedImportItems.length > 0) {
+          showToast('Retrying failed items...');
+          failedImportItems.forEach((item, idx) => {
+            setTimeout(() => retryFailedItem(item.title), 500 + idx * 350);
+          });
+        }
+      });
+      document.getElementById('export-failed-btn').addEventListener('click', exportFailedList);
+
+      setupDragDrop();
+
+      document.getElementById('order-toggle').addEventListener('click', () => togglePanel('order-panel', true));
+      document.getElementById('order-close').addEventListener('click', () => togglePanel('order-panel', false));
+      document.getElementById('order-overlay').addEventListener('click', () => togglePanel('order-panel', false));
+
+      document.getElementById('send-whatsapp').addEventListener('click', sendToWhatsApp);
+
+      document.getElementById('modal-close').addEventListener('click', closeGameModal);
+      document.getElementById('modal-overlay').addEventListener('click', closeGameModal);
+      document.getElementById('modal-add-order').addEventListener('click', addCurrentGameToOrder);
+
+      document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+      document.getElementById('lightbox-prev').addEventListener('click', prevLightbox);
+      document.getElementById('lightbox-next').addEventListener('click', nextLightbox);
+      document.getElementById('lightbox').addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox') closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeLightbox();
+          closeGameModal();
+          togglePanel('admin-panel', false);
+          togglePanel('order-panel', false);
+          closeLoginModal();
+        }
+
+        if (!document.getElementById('lightbox').classList.contains('hidden')) {
+          if (e.key === 'ArrowLeft') prevLightbox();
+          if (e.key === 'ArrowRight') nextLightbox();
+        }
+      });
+    }
+
+    
+initializeApp().catch(err => {
+  console.error("initializeApp error:", err);
+  // paksa event listeners tetap kepasang
+  try { setupEventListeners(); } catch(e) { console.error(e); }
+  try { applyConfig(currentConfig); } catch(e) { console.error(e); }
+});
+
+
+  </script>
+
+  <script>
+    (function(){
+      function c(){
+        var b=a.contentDocument||a.contentWindow.document;
+        if(b){
+          var d=b.createElement('script');
+          d.innerHTML="window.__CF$cv$params={r:'9cfc5797a5098a9a',t:'MTc3MTQwNTMxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+          b.getElementsByTagName('head')[0].appendChild(d)
+        }
+      }
+      if(document.body){
+        var a=document.createElement('iframe');
+        a.height=1;a.width=1;
+        a.style.position='absolute';
+        a.style.top=0;a.style.left=0;
+        a.style.border='none';
+        a.style.visibility='hidden';
+        document.body.appendChild(a);
+        if('loading'!==document.readyState)c();
+        else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);
+        else{
+          var e=document.onreadystatechange||function(){};
+          document.onreadystatechange=function(b){
+            e(b);
+            'loading'!==document.readyState&&(document.onreadystatechange=e,c())
+          }
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
